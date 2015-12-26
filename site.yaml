@@ -1,0 +1,46 @@
+---
+# Based heavily on the Ansible documentation on EC2:
+# http://docs.ansible.com/ec2_module.html
+- name: Provision an EC2 node
+  hosts: local
+  connection: local
+  gather_facts: False
+  tags: provisioning
+  vars:
+      instance_type: t2.micro
+      security_group: ds 
+      image: ami-47a23a30 
+      region: eu-west-1 
+      keypair: ansible
+  tasks:
+      - name: Launch new Instance
+        local_action: ec2 instance_tags="ds=Yes" group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }} vpc_subnet_id=subnet-50b2ca35 assign_public_ip=yes exact_count=1 count_tag=ds
+        register: ec2
+      - name: Add instance to local host group
+        local_action: lineinfile dest=hosts regexp="{{ item.public_ip }}" insertafter="[launched]" line="{{ item.public_ip }} ansible_ssh_private_key_file=~/.ssh/{{ keypair }}.pem"
+        with_items: ec2.instances
+        #"
+      - name: Wait for SSH to come up
+        local_action: wait_for host={{ item.public_ip }} port=22 delay=60 timeout=320 state=started
+        with_items: ec2.instances
+ 
+- name: With the newly provisioned EC2 node configure that thing
+  hosts: launched # This uses the hosts that we put into the in-memory hosts repository with the add_host module.
+  sudo: yes # On EC2 nodes, this is automatically passwordless. 
+  remote_user: ubuntu # This is the username for all ubuntu images, rather than root, or something weird.
+  gather_facts: True  #We need to re-enable this, as we turned it off earlier.
+  tasks:
+      - apt: update_cache=yes    
+      - apt: pkg={{item}} state=installed
+        with_items:
+            - git
+      - user: name=carsten comment="Carsten Behring" password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
+
+- name: Setup data for carsten
+  hosts: launched
+  remote_user: ubuntu
+  become: yes
+  become_user: carsten 
+  tasks:
+     - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
+
