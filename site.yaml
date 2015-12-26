@@ -34,13 +34,54 @@
       - apt: pkg={{item}} state=installed
         with_items:
             - git
+            - build-essential
+            - mosh
+            - mc
+            - r-base
+            - gdebi-core
+            - python-pip
+            - libzmq-dev
+            - python-dev
+            - openjdk-7-jdk
+            
+      - apt: pkg=emacs24 state=build-dep
       - user: name=carsten comment="Carsten Behring" password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
+      - command: pip install --upgrade pip   
+      - pip: name={{item}}
+        with_items:
+          - rodeo
+          - traitlets
+          - simplegeneric
+          - pexpect
+          - pickleshare
+          - ipykernel
+          - jupyter     
+        
+- name: install emacs 24 from source
+  hosts: launched
+  remote_user: ubuntu
+  tasks:
+    - get_url: url=http://mirrors.kernel.org/gnu/emacs/emacs-24.4.tar.xz dest=/tmp/emacs-24.4.tar.xz
+    - unarchive: src=/tmp/emacs-24.4.tar.xz  dest=/tmp copy=no creates=/tmp/emacs-24.4/README
+    - command: ./configure chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/Makefile  
+    - command: make chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/src/emacs
+    - command: sudo make install chdir=/tmp/emacs-24.4 creates=/usr/local/bin/emacs-24.4
+        
 
+
+- name: install rstudio
+  hosts: launched
+  remote_user: ubuntu
+  tasks:
+    - shell: wget -O /tmp/rstudio-server-0.99.489-amd64.deb https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb creates=/tmp/rstudio-server-0.99.489-amd64.deb
+    - command: sudo gdebi -n /tmp/rstudio-server-0.99.489-amd64.deb creates=/usr/lib/rstudio-server/bin/rserver
+ 
+
+              
 - name: Setup data for carsten
   hosts: launched
   remote_user: ubuntu
   become: yes
   become_user: carsten 
   tasks:
-     - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
-
+#     - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
