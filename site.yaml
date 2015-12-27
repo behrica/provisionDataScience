@@ -63,7 +63,8 @@
           - pickleshare
           - ipykernel
           - jupyter     
-        
+  roles:
+    - inadyn
 - name: install emacs 24 from source
   hosts: tag_ds_Yes
   remote_user: ubuntu
@@ -99,3 +100,5 @@
        command: /tmp/domino-install-unix.sh -q creates=/home/carsten/domino/domino
      - file: path=/home/carsten/.dominoconfig state=directory
      - template: src=templates/dominoConfig.j2 dest=/home/carsten/.dominoconfig/install_config.json 
+
+       

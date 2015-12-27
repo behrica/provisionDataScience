@@ -1,0 +1,13 @@
+---
+- name: install inadyn
+  apt: pkg=inadyn
+- file: path=/home/ubuntu/duckdns state=directory
+- template: src=duck.sh.j2 dest=/home/ubuntu/duckdns/duck.sh
+- template: src=duck_daemon.sh.j2  dest=/home/ubuntu/duckdns/duck_daemon.sh
+- file: path=/home/ubuntu/duckdns/duck.sh  mode=700
+- file: path=/home/ubuntu/duckdns/duck_daemon.sh mode="o+x,g+x,u+x"
+- file: path=/home/ubuntu/duckdns/duck_daemon.sh mode=744
+#- file: path=/home/ubuntu/duckdns/duck_daemon.sh owner=root
+#- file: path=/home/ubuntu/duckdns/duck.sh owner=ubuntu  
+  
+  
