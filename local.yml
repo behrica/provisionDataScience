@@ -30,7 +30,7 @@
             - libcurl4-openssl-dev
             
       - apt: pkg=emacs24 state=build-dep
-      - user: name=carsten comment="Carsten Behring" password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
+      - user: name=carsten comment="Carsten Behring" groups=sudo password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
       - command: pip install --upgrade pip   
       - pip: name={{item}}
         with_items:
@@ -44,6 +44,7 @@
   roles:
     - inadyn
     - jdauphant.dropbox
+    - jasonj.sudoers
     
 - name: install emacs 24 from source
   hosts: tag_ds_Yes
