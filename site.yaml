@@ -27,16 +27,22 @@
         add_host: hostname={{ item.public_ip }} groups=tag_ds_Yes
         with_items: ec2.instances
                
-      
+- name: run apt-get update
+  hosts: tag_ds_Yes
+  sudo: yes # On EC2 nodes, this is automatically passwordless. 
+  remote_user: ubuntu # This is the username for all ubuntu images, rather than root, or something weird.
+  tasks:
+      - command: apt-get update    
+
+        
 - name: With the newly provisioned EC2 node configure that thing
   hosts: tag_ds_Yes
   sudo: yes # On EC2 nodes, this is automatically passwordless. 
   remote_user: ubuntu # This is the username for all ubuntu images, rather than root, or something weird.
   gather_facts: True  #We need to re-enable this, as we turned it off earlier.
   tasks:
-      - apt_repository: repo='deb http://cran.mirror.garr.it/mirrors/CRAN/bin/linux/ubuntu trusty/' state=present
+      - apt_repository: repo='deb http://cran.r-project.org/bin/linux/ubuntu trusty/' state=present
       - apt_key: keyserver=keyserver.ubuntu.com id=E084DAB9
-      - apt: update_cache=yes    
       - apt: pkg={{item}} state=installed
         with_items:
             - git
@@ -65,6 +71,8 @@
           - jupyter     
   roles:
     - inadyn
+    - jdauphant.dropbox
+    
 - name: install emacs 24 from source
   hosts: tag_ds_Yes
   remote_user: ubuntu
@@ -91,6 +99,9 @@
   remote_user: ubuntu
   become: yes
   become_user: carsten 
+  vars:
+    miniconda_home: /home/carsten/miniconda
+
   tasks:
      - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
      - name: download domino
@@ -100,5 +111,7 @@
        command: /tmp/domino-install-unix.sh -q creates=/home/carsten/domino/domino
      - file: path=/home/carsten/.dominoconfig state=directory
      - template: src=templates/dominoConfig.j2 dest=/home/carsten/.dominoconfig/install_config.json 
-
+     - file: path=/home/carsten/sources state=directory
+  roles:
+     -  nicholsn.miniconda  
        
