@@ -41,7 +41,8 @@
           - pexpect
           - pickleshare
           - ipykernel
-          - jupyter     
+          - jupyter
+          - Jinja2     
   roles:
     - inadyn
     - jdauphant.dropbox
