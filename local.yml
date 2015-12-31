@@ -52,7 +52,8 @@
     - inadyn
     - jdauphant.dropbox
     - jasonj.sudoers
-    - tersmitten.r    
+    - tersmitten.r  
+  
 - name: install emacs 24 from source
   hosts: tag_ds_Yes
   remote_user: ubuntu
@@ -81,6 +82,10 @@
   become_user: carsten 
   vars:
     miniconda_home: /home/carsten/miniconda
+    git_config:
+       user:
+         name: Carsten Behring
+         email: carsten.behring@gmail.com 
 
   tasks:
      - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
@@ -94,4 +99,6 @@
      - file: path=/home/carsten/sources state=directory
   roles:
      -  nicholsn.miniconda  
+     -  kosssi.gitconfig  
+       
        
