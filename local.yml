@@ -46,6 +46,8 @@
   vars:
     r_packages:
       - name: pacman
+      - name: dplyr
+      - name: ggplot2
   roles:
     - inadyn
     - jdauphant.dropbox
