@@ -42,11 +42,14 @@
           - pickleshare
           - ipykernel
           - jupyter     
+  vars:
+    r_packages:
+      - name: pacman
   roles:
     - inadyn
     - jdauphant.dropbox
     - jasonj.sudoers
-    
+    - tersmitten.r    
 - name: install emacs 24 from source
   hosts: tag_ds_Yes
   remote_user: ubuntu
