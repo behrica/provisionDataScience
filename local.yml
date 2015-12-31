@@ -42,6 +42,7 @@
           - pickleshare
           - ipykernel
           - jupyter     
+          - Jinja2     
   vars:
     r_packages:
       - name: pacman
