@@ -9,5 +9,5 @@
 - file: path=/home/ubuntu/duckdns/duck_daemon.sh mode=744
 #- file: path=/home/ubuntu/duckdns/duck_daemon.sh owner=root
 #- file: path=/home/ubuntu/duckdns/duck.sh owner=ubuntu  
-  
-  
+- file: src=/home/ubuntu/duckdns/duck_daemon.sh dest=/etc/rc2.d/S10duckdns state=link   
+- shell: pgrep duck.sh && echo "already running" || ( /home/ubuntu/duckdns/duck_daemon.sh)  
