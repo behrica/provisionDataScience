@@ -31,6 +31,7 @@
             - shellinabox
             - libssl-dev
             - libxml2-dev
+            - mu4e
    
       - user: name=carsten comment="Carsten Behring" groups=sudo password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
       - command: pip install --upgrade pip   
@@ -47,8 +48,8 @@
 
   roles:
     # - inadyn
-    - jdauphant.dropbox
-    - jasonj.sudoers
+   #- jdauphant.dropbox
+   - jasonj.sudoers
 
 - name: Clojure
   hosts: tag_ds_Yes
@@ -59,7 +60,7 @@
     clojure_default_version: "1.7.0"        # The clojure version you want to be the system default
     clojure_leiningen_version: "2.5.3"      # The version of leiningen to install
   roles:
-    - ANXS.clojure
+#    - ANXS.clojure
 
 
   
@@ -73,7 +74,7 @@
       - name: dplyr
       - name: ggplot2
   roles:
-     - tersmitten.r  
+#     - tersmitten.r  
 
       
 - name: install emacs 24 from source
