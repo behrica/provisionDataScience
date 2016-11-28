@@ -9,7 +9,7 @@
     - command: apt-get update    
 
         
-- name: With the newly provisioned EC2 node configure that thing
+- name: Setup packages
   hosts: tag_ds_Yes
   sudo: yes # On EC2 nodes, this is automatically passwordless. 
   remote_user: ubuntu # This is the username for all ubuntu images, rather than root, or something weird.
@@ -50,7 +50,7 @@
     - jdauphant.dropbox
     - jasonj.sudoers
 
-- name: Clojure
+- name: install dev tools
   hosts: tag_ds_Yes
   sudo: yes 
   remote_user: ubuntu
@@ -58,44 +58,16 @@
     clojure_versions: ["1.7.0"]             # A list of clojure versions you want to have installed
     clojure_default_version: "1.7.0"        # The clojure version you want to be the system default
     clojure_leiningen_version: "2.5.3"      # The version of leiningen to install
+    r_packages:
+        - name: pacman
+        - name: dplyr
+        - name: ggplot2
+  
   roles:
     - ANXS.clojure
-
-
-  
-- name: R and packages
-  hosts: tag_ds_Yes
-  sudo: yes 
-  remote_user: ubuntu
-  vars:
-    r_packages:
-      - name: pacman
-      - name: dplyr
-      - name: ggplot2
-  roles:
-     - tersmitten.r  
-
-      
-- name: install emacs 24 from source
-  hosts: tag_ds_Yes
-  sudo: yes
-  remote_user: ubuntu
-  tasks:
-    - apt: pkg=emacs24 state=build-dep
-    - get_url: url=http://mirrors.kernel.org/gnu/emacs/emacs-24.4.tar.xz dest=/tmp/emacs-24.4.tar.xz
-    - unarchive: src=/tmp/emacs-24.4.tar.xz  dest=/tmp copy=no creates=/tmp/emacs-24.4/README
-    - command: ./configure chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/Makefile  
-    - command: make chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/src/emacs
-    - command: sudo make install chdir=/tmp/emacs-24.4 creates=/usr/local/bin/emacs-24.4
-        
-
-
-- name: install rstudio
-  hosts: tag_ds_Yes
-  remote_user: ubuntu
-  tasks:
-    - shell: wget -O /tmp/rstudio-server-0.99.489-amd64.deb https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb creates=/tmp/rstudio-server-0.99.489-amd64.deb
-    - command: sudo gdebi -n /tmp/rstudio-server-0.99.489-amd64.deb creates=/usr/lib/rstudio-server/bin/rserver
+    - tersmitten.r  
+    - emacs24
+    - rstudio
  
 
               
@@ -113,16 +85,9 @@
 
   tasks:
      - git: repo=https://github.com/behrica/emacs.d dest=/home/carsten/.emacs.d update=yes
-     - name: download domino
-       shell: wget -O /tmp/domino-install-unix.sh http://static.dominodatalab.com/cloud/domino-install-unix.sh creates=/tmp/domino-install-unix.sh
-     - file: path=/tmp/domino-install-unix.sh  mode="o+x,g+x,u+x"
-     - name: install domino  
-       command: /tmp/domino-install-unix.sh -q creates=/home/carsten/domino/domino
-     - file: path=/home/carsten/.dominoconfig state=directory
-     - template: src=templates/dominoConfig.j2 dest=/home/carsten/.dominoconfig/install_config.json 
      - file: path=/home/carsten/sources state=directory
   roles:
      -  nicholsn.miniconda  
      -  kosssi.gitconfig  
-       
+     -  dominoClient   
        
