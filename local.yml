@@ -58,13 +58,21 @@
     clojure_versions: ["1.7.0"]             # A list of clojure versions you want to have installed
     clojure_default_version: "1.7.0"        # The clojure version you want to be the system default
     clojure_leiningen_version: "2.5.3"      # The version of leiningen to install
-    r_packages:
-        - name: pacman
-        - name: dplyr
-        - name: ggplot2
-  
   roles:
     - ANXS.clojure
+
+
+  
+- name: R and packages
+  hosts: tag_ds_Yes
+  sudo: yes 
+  remote_user: ubuntu
+  vars:
+    r_packages:
+      - name: pacman
+      - name: dplyr
+      - name: ggplot2
+  roles:
     - tersmitten.r  
     - emacs24
     - rstudio
@@ -89,5 +97,5 @@
   roles:
      -  nicholsn.miniconda  
      -  kosssi.gitconfig  
-     -  dominoClient   
+       -  dominoClient   
        

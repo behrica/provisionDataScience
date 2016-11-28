@@ -1,0 +1,142 @@
+    1  su - carsten
+    2  ps -awx
+    3  ps -awx|grep mosh
+    4  exit
+    5  ps -awx|grep mosh
+    6  su - carsten
+    7  sudo apt-get install git
+    8  sudo apt-get update
+    9  sudo apt-get install git
+   10  git --versin
+   11  git --version
+   12  su - carsten
+   13  uname -a
+   14  lsb_release -a
+   15  sudo add-apt-repository ppa:git-core/ppa
+   16  sudo apt-get install git
+   17  sudo apt-get update
+   18  sudo apt-get install git
+   19  git --version
+   20  su - carsten
+   21  ;10;0c
+   22  sudo bash /home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   23  pip install --upgrade pip
+   24  sudo pip install --upgrade pip
+   25  sudo bash /home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   26  /home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   27  ca t/home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   28  cat /home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   29  tai /tmp/ansible-pull.log 
+   30  tail /tmp/ansible-pull.log 
+   31  cat /home/carsten/sources/provisionDataScience/ec2-userData.sh 
+   32  ansible-pull  -i /tmp/hosts -U https://github.com/behrica/provisionDataScience
+   33  sudo ansible-pull  -i /tmp/hosts -U https://github.com/behrica/provisionDataScience
+   34  sudo pip install urllib3 pyopenssl mdg-httpsclient yasn1
+   35  sudo pip install urllib3 pyopenssl mdg-httpsclient pyasn1
+   36  sudo pip -H install urllib3 pyopenssl mdg-httpsclient pyasn1
+   37  sudo pip install -H urllib3 pyopenssl mdg-httpsclient pyasn1
+   38  sudo pip -H install urllib3 pyopenssl mdg-httpsclient pyasn1
+   39  sudo mv /home/carsten/sources/provisionDataScience/ .
+   40  sudo chwon -R ubuntu provisionDataScience/
+   41  sudo chown -R ubuntu provisionDataScience/
+   42  cd provisionDataScience/
+   43  ls
+   44  cat local.yml 
+   45  cat provision.yml 
+   46  ca local.yml 
+   47  cat local.yml 
+   48  sudo ansible-pull  -i /tmp/hosts -U provision.yml 
+   49  sudo ansible  -i /tmp/hosts -U provision.yml 
+   50  sudo ansible  -i /tmp/hosts -U provision.yml local
+   51  sudo ansible  -i /tmp/hosts -U  local
+   52  sudo man ansible  
+   53  sudo ansible  -i /tmp/hosts local
+   54  sudo ansible  -i /tmp/hosts localhost
+   55  cattt /etc/hosts
+   56  cat /etc/hosts
+   57  sudo man ansible  
+   58  sudo ansible-playbook  -i /tmp/hosts localhost
+   59  sudo ansible-playbook  -i /tmp/hosts provision.yml 
+   60  sudo ansible-playbook  -i /tmp/hosts local.yml 
+   61  sudo man ansible-playbook  
+   62  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   63  vi provision.yml 
+   64  vi local.yml
+   65  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   66  vi local.yml
+   67  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   68  ls
+   69  cd roles/
+   70  ls
+   71  cat tersmitten.r/tasks/repository.yml 
+   72  vi local.yml
+   73  cd ..
+   74  vi local.yml
+   75  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   76  vi local.yml
+   77  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   78  vi local.yml
+   79  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   80  su - carsten
+   81  apt-cache search mu4e
+   82  mu
+   83  dpkg -aL
+   84  dpkg -l
+   85  dpkg -l | grep mu4e
+   86  su - carsten
+   87  sudo ansible-playbook  -c local -i /tmp/hosts local.yml 
+   88  ls
+   89  su - carsten
+   90  cd ..
+   91  git clone https://github.com/djcb/mu.git
+   92  cd mu/
+   93  git tag
+   94  git checkout v0.9.9.6
+   95  s
+   96  ls
+   97  automake
+   98  ls
+   99  ./autogen.sh 
+  100  autreconf -i
+  101  ./autogen.sh 
+  102  cat autogen.sh 
+  103  less HACKING 
+  104  autoreconf 
+  105  autoreconf -i
+  106  apt-get install libtool
+  107  sudo apt-get install libtool
+  108  autoreconf -i
+  109  ./configure 
+  110  sudo apt-get install gmime-2.6
+  111  ./configure 
+  112  sudo apt-get install libxapian-dev
+  113  ./configure 
+  114  make
+  115  sudo make install
+  116  sudo - carsten
+  117  su - carsten
+  118  ls
+  119  ls mu4e
+  120  sudo make install
+  121  su - carsten
+  122  ls
+  123  cd mu4e/
+  124  ls
+  125  grep context *.el
+  126  cd ..
+  127  git checkout HEAD
+  128  cd mu
+  129  git checkout HEAD
+  130  git log
+  131  git checkout master
+  132  ./configure 
+  133  make
+  134  sudo make-install
+  135  sudo make install
+  136  su - carsten
+  137  history 
+  138  cd ..
+  139  cd provisionDataScience/
+  140  ls -la
+  141  git status
+  142  history > history_todo.txt
