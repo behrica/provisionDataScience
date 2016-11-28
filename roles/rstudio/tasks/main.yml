@@ -1,0 +1,5 @@
+---
+- name: install rstudio
+  shell: wget -O /tmp/rstudio-server-0.99.489-amd64.deb https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb creates=/tmp/rstudio-server-0.99.489-amd64.deb
+- command: sudo gdebi -n /tmp/rstudio-server-0.99.489-amd64.deb creates=/usr/lib/rstudio-server/bin/rserver
+ 

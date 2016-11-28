@@ -1,0 +1,8 @@
+---
+- name: install emacs 24 from source
+  apt: pkg=emacs24 state=build-dep
+- get_url: url=http://mirrors.kernel.org/gnu/emacs/emacs-24.4.tar.xz dest=/tmp/emacs-24.4.tar.xz
+- unarchive: src=/tmp/emacs-24.4.tar.xz  dest=/tmp copy=no creates=/tmp/emacs-24.4/README
+- command: ./configure chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/Makefile  
+- command: make chdir=/tmp/emacs-24.4 creates=/tmp/emacs-24.4/src/emacs
+- command: sudo make install chdir=/tmp/emacs-24.4 creates=/usr/local/bin/emacs-24.4
