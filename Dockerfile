@@ -4,7 +4,7 @@ apt-get install -y python-dev python-httplib2 python-keyczar python-setuptools p
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN pip install --upgrade pip
 RUN pip install ansible
-RUN ansible-galaxy install tersmitten.r
+RUN ansible-galaxy install tersmitten.r ANXS.clojure nicholsn.miniconda kosssi.gitconfig  tersmitten.rstudio
 COPY . /root/
 RUN ansible-playbook -i /root/hosts /root/local.yml -c local
 
