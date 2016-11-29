@@ -1,8 +1,8 @@
 ---
 
 - name: Fail if not running on Ubuntu trusty
-  when: ansible_distribution != 'Ubuntu' and ansible_distribution_release != 'trusty'
   fail: msg="These tasks should only be run on trusty  servers"
+  when: ansible_distribution != 'Ubuntu' and ansible_distribution_release != 'trusty'
 
 
 - name: run apt-get update
