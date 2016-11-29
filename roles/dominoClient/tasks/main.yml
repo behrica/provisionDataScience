@@ -1,5 +1,5 @@
 - name: download domino
-  shell: wget -O /tmp/domino-install-unix.sh http://static.dominodatalab.com/cloud/domino-install-unix.sh creates=/tmp/domino-install-unix.sh
+  shell: wget -O /tmp/domino-install-unix.sh https://app.dominodatalab.com/assets/cli/default/domino-install-unix.sh creates=/tmp/domino-install-unix.sh
 - file: path=/tmp/domino-install-unix.sh  mode="o+x,g+x,u+x"
 - name: install domino  
   command: /tmp/domino-install-unix.sh -q creates=/home/carsten/domino/domino
