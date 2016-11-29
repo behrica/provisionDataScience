@@ -66,7 +66,7 @@
       - name: dplyr
       - name: ggplot2
   roles:
-   # - tersmitten.r  
+    - tersmitten.r  
    # - emacs24
     - rstudio
  
