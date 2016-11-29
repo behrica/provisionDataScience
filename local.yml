@@ -23,15 +23,13 @@
              - sudo
              - wget
             # - mc
-             - r-base
+        
              - gdebi-core
             # - python-pip
             # - libzmq-dev
             # - python-dev
              - openjdk-7-jdk
-            # - libcurl4-openssl-dev
-            # - libssl-dev
-            # - libxml2-dev
+            
    
       - user: name=carsten comment="Carsten Behring" groups=sudo password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
       - command: pip install --upgrade pip   
@@ -66,6 +64,10 @@
       - name: pacman
       - name: dplyr
       - name: ggplot2
+    r_install:
+      - libcurl4-openssl-dev
+      - libssl-dev
+      - libxml2-dev
   roles:
     - tersmitten.r  
    # - emacs24
