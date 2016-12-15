@@ -22,7 +22,6 @@
              - sudo
              - wget
              - gdebi-core
-             - openjdk-7-jdk
              - emacs24
             
    
