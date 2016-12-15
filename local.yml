@@ -24,6 +24,7 @@
              - gdebi-core
              - emacs24
              - openjdk-8-jdk
+             - mosh
             
    
       - user: name=carsten comment="Carsten Behring" groups=sudo password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
