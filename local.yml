@@ -23,6 +23,7 @@
              - wget
              - gdebi-core
              - emacs24
+             - openjdk-8-jdk
             
    
       - user: name=carsten comment="Carsten Behring" groups=sudo password="$6$/4z0WSR40MY$2w488iVd3jdeGOTh0RlMrr4bSOcJlUesLIP3GWwHgpl4hCDV0Gil0YnLNuMFDtk6RXlmy83HOOUZlNGky5ybg1"
@@ -34,22 +35,7 @@
   roles:
     
     
-- name: install dev tools
-  hosts: tag_ds_Yes
-  sudo: yes 
-  remote_user: ubuntu
-  vars:
-    oracle_jdk_java_versions: [8]             # A list of java versions you want to have installed (6, 7 and/or 8)
-    oracle_jdk_java_version_default: 8   
-    clojure_versions: ["1.7.0"]             # A list of clojure versions you want to have installed
-    clojure_default_version: "1.7.0"        # The clojure version you want to be the system default
-    clojure_leiningen_version: "2.5.3"      # The version of leiningen to install
-  roles:
-    - ANXS.oracle-jdk
-    - ANXS.clojure
-
-
-  
+ 
 - name: R and packages
   hosts: tag_ds_Yes
   sudo: yes 
