@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 RUN apt-get -y update && \
 apt-get install -y python-dev python-httplib2 python-keyczar python-setuptools python-pkg-resources git python-pip build-essential libssl-dev libffi-dev gdebi-core openjdk-7-jdk && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
